@@ -19,3 +19,7 @@
   text-align: center;
   font-style: italic;
 }
+
+.loadingText {
+  font-size: 25px;
+}

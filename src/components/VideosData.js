@@ -5,6 +5,7 @@ import Header from "./UI/Header";
 
 const PhotosData = () => {
   const [values, setValues] = useState([]);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,6 +13,7 @@ const PhotosData = () => {
       const responseData = await response.json();
 
       setValues(responseData);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -19,6 +21,7 @@ const PhotosData = () => {
   return (
     <Fragment>
       <Header />
+      {loading && <p className={classes.loadingText}>Loading ...</p>}
       <div className={classes.wrapper}>
         {values.map((item) => {
           let m1 = Number(item.perc_score_m1);

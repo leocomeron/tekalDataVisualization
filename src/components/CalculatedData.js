@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Table from "./UI/Table";
 import { PieChart, Pie, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
 import classes from "./CalculatedData.module.css";
 
 const CalculatedData = () => {
   const [values, setValues] = useState([]);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,6 +13,7 @@ const CalculatedData = () => {
       const responseData = await response.json();
 
       setValues(responseData);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -87,49 +89,55 @@ const CalculatedData = () => {
   });
 
   return (
-    <div className={classes.container}>
-      <Table processedData={processedData} />
-      <div className={classes.wrapper}>
-        <div>
-          <p className={classes.chartTitle}>QUANTITY PIE CHART</p>
-          <PieChart width={400} height={300}>
-            <Pie
-              dataKey="quantity"
-              isAnimationActive={false}
-              data={pieChartData}
-              cx="50%"
-              cy="50%"
-              outerRadius={80}
-              fill="#8884d8"
-              label
-            />
-            <Tooltip />
-          </PieChart>
+    <Fragment>
+      {(loading && <p className={classes.loadingText}>Loading ...</p>) || (
+        <div className={classes.container}>
+          <div>
+            <Table processedData={processedData} />
+            <div className={classes.wrapper}>
+              <div>
+                <p className={classes.chartTitle}>QUANTITY PIE CHART</p>
+                <PieChart width={400} height={300}>
+                  <Pie
+                    dataKey="quantity"
+                    isAnimationActive={false}
+                    data={pieChartData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                  />
+                  <Tooltip />
+                </PieChart>
+              </div>
+              <div>
+                <p className={classes.chartTitle}>MEDIA SCORE HISTOGRAM</p>
+                <BarChart
+                  width={700}
+                  height={300}
+                  data={histogramData}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="photoScore" fill="#8884d8" />
+                  <Bar dataKey="videoScore" fill="#82ca9d" />
+                </BarChart>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <p className={classes.chartTitle}>MEDIA SCORE HISTOGRAM</p>
-          <BarChart
-            width={700}
-            height={300}
-            data={histogramData}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="photoScore" fill="#8884d8" />
-            <Bar dataKey="videoScore" fill="#82ca9d" />
-          </BarChart>
-        </div>
-      </div>
-    </div>
+      )}
+    </Fragment>
   );
 };
 
