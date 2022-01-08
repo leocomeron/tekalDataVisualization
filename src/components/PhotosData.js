@@ -47,6 +47,7 @@ const PhotosData = () => {
               </Fragment>
             );
           }
+          return null;
         })}
       </div>
     </Fragment>

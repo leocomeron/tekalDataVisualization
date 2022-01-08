@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Table from "./UI/Table";
-import { PieChart, Pie, Tooltip, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
+import { PieChart, Pie, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
 import classes from "./CalculatedData.module.css";
 
 const CalculatedData = () => {
@@ -36,7 +36,7 @@ const CalculatedData = () => {
       type = t;
 
       values.map((item) => {
-        if ((item.sector === s) & (item.type == t)) {
+        if ((item.sector === s) & (item.type === t)) {
           sumaM1 = sumaM1 + item.perc_score_m1;
           sumaM2 = sumaM2 + item.perc_score_m2;
           sumaM3 = sumaM3 + item.perc_score_m3;
@@ -47,6 +47,7 @@ const CalculatedData = () => {
           m3MediaScore = sumaM3 / counter;
           sectorMediaScore = (m1MediaScore + m2MediaScore + m3MediaScore) / 3;
         }
+        return null;
       });
 
       if (sectorMediaScore !== 0) {
@@ -71,6 +72,7 @@ const CalculatedData = () => {
       name: `${(i.sector === "" && "Not defined") || i.sector} - ${(i.type === 0 && "Photo") || "Video"}`,
     };
     pieChartData.push(obj);
+    return null;
   });
 
   let histogramData = [];
@@ -81,8 +83,8 @@ const CalculatedData = () => {
       name: `${(i.sector === "" && "Not defined") || i.sector}`,
     };
     histogramData.push(obj);
+    return null;
   });
-  console.log(histogramData);
 
   return (
     <div className={classes.container}>

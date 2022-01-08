@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <Fragment>
       <Header />
-      <img className={classes.img} src={TekalPhoto}></img>
+      <img className={classes.img} src={TekalPhoto} alt="imagen tekal"></img>
     </Fragment>
   );
 };
