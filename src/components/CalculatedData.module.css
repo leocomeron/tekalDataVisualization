@@ -1,0 +1,21 @@
+.container {
+  background-color: #f5eeee;
+}
+.wrapper {
+  display: flex;
+  align-content: flex-start;
+  max-width: fit-content;
+  background-color: #f5eeee;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+.chartContainer {
+  flex: 1 1 auto;
+  padding: 5px;
+  margin: 10px;
+}
+.chartTitle {
+  flex: auto;
+  text-align: center;
+  font-style: italic;
+}

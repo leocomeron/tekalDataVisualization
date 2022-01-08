@@ -1,0 +1,17 @@
+.Box {
+  background-color: rgb(223, 222, 231);
+}
+
+.wrapper {
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.img {
+  padding-left: 80px;
+}
+
+.button {
+  flex: 1 1 auto;
+}
