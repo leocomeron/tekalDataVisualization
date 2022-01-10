@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import Table from "./UI/Table";
 import { PieChart, Pie, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from "recharts";
 import classes from "./CalculatedData.module.css";
+import LoadingState from "./UI/LoadingState";
 
 const CalculatedData = () => {
   const [values, setValues] = useState([]);
@@ -90,7 +91,7 @@ const CalculatedData = () => {
 
   return (
     <Fragment>
-      {(loading && <p className={classes.loadingText}>Loading ...</p>) || (
+      {(loading && <LoadingState />) || (
         <div className={classes.container}>
           <div>
             <Table processedData={processedData} />

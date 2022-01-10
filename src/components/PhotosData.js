@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 import BasicModal from "./UI/Modal";
 import classes from "./PhotosData.module.css";
 import Header from "./UI/Header";
+import LoadingState from "./UI/LoadingState";
 
 const PhotosData = () => {
   const [values, setValues] = useState([]);
@@ -21,7 +22,7 @@ const PhotosData = () => {
   return (
     <Fragment>
       <Header />
-      {loading && <p className={classes.loadingText}>Loading ...</p>}
+      {loading && <LoadingState />}
       <div className={classes.wrapper}>
         {values.map((item) => {
           let m1 = Number(item.perc_score_m1);

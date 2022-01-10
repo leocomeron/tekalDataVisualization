@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import classes from "./Modal.module.css";
-import VideoChart from "../charts/VideoChart";
 
 const style = {
   position: "absolute",
@@ -54,7 +53,11 @@ export default function BasicModal(props) {
             {props.type === 0 && (
               <img className={classes.img} src={props.image} height={150} width={150} alt="img"></img>
             )}
-            {props.type === 1 && <VideoChart data={props.data}></VideoChart>}
+            {props.type === 1 && (
+              <video controls className={classes.img} width="150" height="150">
+                <source src={props.video}></source>
+              </video>
+            )}
           </Typography>
         </Box>
       </Modal>
